@@ -7,7 +7,7 @@
     "start": " nodemon app",
     "lint": "eslint .",
     "sonar": "node sonar-project.js",
-    "build": "node server.js",
+    "build": "node app.js",
     "test": "NODE_ENV=test jest --coverage --testTimeout=80000",
     "test:watch": "set NODE_ENV=test && nodemon --exec \"jest --reporter spec --exit --timeout 10000 tests/\""
   },
