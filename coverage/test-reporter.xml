@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+    <file path="C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\admin.spec.js">
+        <testCase name="API User Admin Should create a new specialist" duration="10012">
+            <failure message="MongooseError: Operation `users.deleteMany()` buffering timed out after 10000ms"><![CDATA[MongooseError: Operation `users.deleteMany()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:151:23)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)]]></failure>
+        </testCase>
+        <testCase name="API User Admin should return all reported posts" duration="21168"/>
+        <testCase name="API User Admin should return all retired accounts" duration="4084"/>
+        <testCase name="API User Admin should return all no retired accounts" duration="1004">
+            <failure message="ReferenceError: next is not defined"><![CDATA[ReferenceError: next is not defined
+    at next (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\controllers\admin.controller.js:70:3)
+    at Layer.handle [as handle_request] (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\express\lib\router\index.js:47:12)]]></failure>
+        </testCase>
+        <testCase name="API User Admin should return all  accounts" duration="878"/>
+        <testCase name="API User Admin should return all  patients" duration="902"/>
+        <testCase name="API User Admin should return all  followed patients" duration="1462"/>
+        <testCase name="API User Admin should return all  unfollowed patients" duration="1240"/>
+    </file>
+    <file path="C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\specialist.spec.js">
+        <testCase name="API User Admin Should create a new allergy file" duration="10020">
+            <failure message="Error: listen EADDRINUSE: address already in use :::5000"><![CDATA[Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1330:16)
+    at listenInCluster (node:net:1378:12)
+    at Server.listen (node:net:1465:7)
+    at Function.listen (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\express\lib\application.js:635:24)
+    at Object.listen (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\app.js:47:20)
+    at Runtime._execModule (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\jest-runtime\build\index.js:1596:24)
+    at Runtime._loadModule (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\jest-runtime\build\index.js:1124:12)
+    at Runtime.requireModule (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\jest-runtime\build\index.js:960:12)
+    at Runtime.requireModuleOrMock (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\jest-runtime\build\index.js:1145:21)
+    at Object.require (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\specialist.spec.js:2:13)]]></failure>
+            <failure message="MongooseError: Operation `users.deleteMany()` buffering timed out after 10000ms"><![CDATA[MongooseError: Operation `users.deleteMany()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:151:23)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)]]></failure>
+        </testCase>
+        <testCase name="API User Admin Should edit an existing allergy file" duration="19492">
+            <failure message="ValidationError: user validation failed: user_name: Error, expected `user_name` to be unique. Value: `@hassan`, email: Error, expected `email` to be unique. Value: `bahas@gmail.com`, password: Error, expected `password` to be unique. Value: `hba123`, _id: Error, expected `_id` to be unique. Value: `6324fafbdcd5fe8fd9810ea1`"><![CDATA[ValidationError: user validation failed: user_name: Error, expected `user_name` to be unique. Value: `@hassan`, email: Error, expected `email` to be unique. Value: `bahas@gmail.com`, password: Error, expected `password` to be unique. Value: `hba123`, _id: Error, expected `_id` to be unique. Value: `6324fafbdcd5fe8fd9810ea1`
+    at model.Object.<anonymous>.Document.invalidate (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\document.js:3051:32)
+    at C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\document.js:2839:17
+    at C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\schematype.js:1340:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+    at runNextTicks (node:internal/process/task_queues:65:3)
+    at listOnTimeout (node:internal/timers:528:9)
+    at processTimers (node:internal/timers:502:7)]]></failure>
+            <failure message="ValidationError: user validation failed: user_name: Error, expected `user_name` to be unique. Value: `@hassane`, email: Error, expected `email` to be unique. Value: `bahase@gmail.com`, password: Error, expected `password` to be unique. Value: `haba123`, _id: Error, expected `_id` to be unique. Value: `6324fafbdcd5fe8fd9810ea2`"><![CDATA[ValidationError: user validation failed: user_name: Error, expected `user_name` to be unique. Value: `@hassane`, email: Error, expected `email` to be unique. Value: `bahase@gmail.com`, password: Error, expected `password` to be unique. Value: `haba123`, _id: Error, expected `_id` to be unique. Value: `6324fafbdcd5fe8fd9810ea2`
+    at model.Object.<anonymous>.Document.invalidate (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\document.js:3051:32)
+    at C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\document.js:2839:17
+    at C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\schematype.js:1340:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+    at runNextTicks (node:internal/process/task_queues:65:3)
+    at listOnTimeout (node:internal/timers:528:9)
+    at processTimers (node:internal/timers:502:7)]]></failure>
+            <failure message="MongooseError: Operation `specialists.insertOne()` buffering timed out after 10000ms"><![CDATA[MongooseError: Operation `specialists.insertOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:151:23)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)]]></failure>
+            <failure message="MongooseError: Operation `posts.insertOne()` buffering timed out after 10000ms"><![CDATA[MongooseError: Operation `posts.insertOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:151:23)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)]]></failure>
+        </testCase>
+        <testCase name="API User Admin should return all patients" duration="5194"/>
+        <testCase name="API User Admin should return a disired patient" duration="3075"/>
+        <testCase name="API User Admin should return all files historic" duration="561">
+            <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: 404
+    at Object.toBe (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\specialist.spec.js:86:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+        </testCase>
+        <testCase name="API User Admin should return a specific file historic" duration="920">
+            <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: 404
+    at Object.toBe (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\specialist.spec.js:91:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+        </testCase>
+        <testCase name="API User Admin should return all  accounts" duration="525">
+            <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: 404
+    at Object.toBe (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\specialist.spec.js:96:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+        </testCase>
+        <testCase name="API User Admin should make a specialist follows a patient" duration="786">
+            <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: 404
+    at Object.toBe (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\specialist.spec.js:103:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+        </testCase>
+        <testCase name="API User Admin should make a specialist unfollows a patient" duration="637">
+            <failure message="Error: read ECONNRESET"><![CDATA[Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:217:20)]]></failure>
+        </testCase>
+        <testCase name="API User Admin should delete an existing file" duration="1377">
+            <failure message="Error: connect ECONNREFUSED 127.0.0.1:5000"><![CDATA[Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1157:16)]]></failure>
+        </testCase>
+    </file>
+    <file path="C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\post.spec.js">
+        <testCase name="API Post Should create a new public post and return a 201 status code" duration="10030">
+            <failure message="Error: listen EADDRINUSE: address already in use :::5000"><![CDATA[Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1330:16)
+    at listenInCluster (node:net:1378:12)
+    at Server.listen (node:net:1465:7)
+    at Function.listen (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\express\lib\application.js:635:24)
+    at Object.listen (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\app.js:47:20)
+    at Runtime._execModule (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\jest-runtime\build\index.js:1596:24)
+    at Runtime._loadModule (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\jest-runtime\build\index.js:1124:12)
+    at Runtime.requireModule (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\jest-runtime\build\index.js:960:12)
+    at Runtime.requireModuleOrMock (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\jest-runtime\build\index.js:1145:21)
+    at Object.require (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\post.spec.js:2:13)]]></failure>
+            <failure message="MongooseError: Operation `users.deleteMany()` buffering timed out after 10000ms"><![CDATA[MongooseError: Operation `users.deleteMany()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:151:23)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)]]></failure>
+        </testCase>
+        <testCase name="API Post Should create a new private post and return a 201 status code" duration="19142">
+            <failure message="ValidationError: user validation failed: user_name: Error, expected `user_name` to be unique. Value: `@ami`, email: Error, expected `email` to be unique. Value: `ndami@gmail.com`, password: Error, expected `password` to be unique. Value: `ami123`, _id: Error, expected `_id` to be unique. Value: `6324fafc4786ae4187e1b733`"><![CDATA[ValidationError: user validation failed: user_name: Error, expected `user_name` to be unique. Value: `@ami`, email: Error, expected `email` to be unique. Value: `ndami@gmail.com`, password: Error, expected `password` to be unique. Value: `ami123`, _id: Error, expected `_id` to be unique. Value: `6324fafc4786ae4187e1b733`
+    at model.Object.<anonymous>.Document.invalidate (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\document.js:3051:32)
+    at C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\document.js:2839:17
+    at C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\schematype.js:1340:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+    at runNextTicks (node:internal/process/task_queues:65:3)
+    at listOnTimeout (node:internal/timers:528:9)
+    at processTimers (node:internal/timers:502:7)]]></failure>
+            <failure message="ValidationError: user validation failed: user_name: Error, expected `user_name` to be unique. Value: `@amy`, email: Error, expected `email` to be unique. Value: `amy@gmail.com`, password: Error, expected `password` to be unique. Value: `amy123`, _id: Error, expected `_id` to be unique. Value: `6324fafc4786ae4187e1b734`"><![CDATA[ValidationError: user validation failed: user_name: Error, expected `user_name` to be unique. Value: `@amy`, email: Error, expected `email` to be unique. Value: `amy@gmail.com`, password: Error, expected `password` to be unique. Value: `amy123`, _id: Error, expected `_id` to be unique. Value: `6324fafc4786ae4187e1b734`
+    at model.Object.<anonymous>.Document.invalidate (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\document.js:3051:32)
+    at C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\document.js:2839:17
+    at C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\schematype.js:1340:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+    at runNextTicks (node:internal/process/task_queues:65:3)
+    at listOnTimeout (node:internal/timers:528:9)
+    at processTimers (node:internal/timers:502:7)]]></failure>
+            <failure message="MongooseError: Operation `posts.insertOne()` buffering timed out after 10000ms"><![CDATA[MongooseError: Operation `posts.insertOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:151:23)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)]]></failure>
+            <failure message="MongooseError: Operation `posts.insertOne()` buffering timed out after 10000ms"><![CDATA[MongooseError: Operation `posts.insertOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:151:23)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)]]></failure>
+            <failure message="MongooseError: Operation `posts.insertOne()` buffering timed out after 10000ms"><![CDATA[MongooseError: Operation `posts.insertOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:151:23)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)]]></failure>
+        </testCase>
+        <testCase name="API Post Should update a given post and return a 200 status code" duration="5472"/>
+        <testCase name="API Post should return all posts" duration="2719"/>
+        <testCase name="API Post should return all given user&apos;s posts" duration="1246"/>
+        <testCase name="API Post should like a given post" duration="1395"/>
+        <testCase name="API Post should unlike a given post" duration="675">
+            <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: 400
+    at Object.toBe (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\post.spec.js:95:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+        </testCase>
+        <testCase name="API Post should report a given post" duration="1006">
+            <failure message="Error: connect ECONNREFUSED 127.0.0.1:5000"><![CDATA[Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1157:16)]]></failure>
+        </testCase>
+        <testCase name="API Post should unreport a given post" duration="15541"/>
+        <testCase name="API Post should delete a specific  given post" duration="1157"/>
+    </file>
+    <file path="C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\user.spec.js">
+        <testCase name="API User Should create a new user and return a 201 status code" duration="11990"/>
+        <testCase name="API User Should update given user and return a 200 status code" duration="5719"/>
+        <testCase name="API User should return all users" duration="3708"/>
+        <testCase name="API User should login an existing user in the database" duration="5377"/>
+        <testCase name="API User should return a specific user given his id with status code 200" duration="2270"/>
+        <testCase name="API User should be able to delete user" duration="1632"/>
+    </file>
+    <file path="C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\comment.spec.js">
+        <testCase name="API Comment Post Should comment a given post" duration="10652">
+            <failure message="Error: listen EADDRINUSE: address already in use :::5000"><![CDATA[Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1330:16)
+    at listenInCluster (node:net:1378:12)
+    at Server.listen (node:net:1465:7)
+    at Function.listen (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\express\lib\application.js:635:24)
+    at Object.listen (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\app.js:47:20)
+    at Runtime._execModule (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\jest-runtime\build\index.js:1596:24)
+    at Runtime._loadModule (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\jest-runtime\build\index.js:1124:12)
+    at Runtime.requireModule (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\jest-runtime\build\index.js:960:12)
+    at Runtime.requireModuleOrMock (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\node_modules\jest-runtime\build\index.js:1145:21)
+    at Object.require (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\comment.spec.js:2:13)]]></failure>
+        </testCase>
+        <testCase name="API Comment Post Should edit an existing given comment" duration="1323">
+            <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: 404
+    at Object.toBe (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\comment.spec.js:70:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+        </testCase>
+        <testCase name="API Comment Post should return all comments of a given post" duration="3764"/>
+        <testCase name="API Comment Post should like a given comment" duration="8849"/>
+        <testCase name="API Comment Post should unlike a given comment" duration="2247">
+            <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: 400
+    at Object.toBe (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\comment.spec.js:89:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+        </testCase>
+        <testCase name="API Comment Post should report a given comment" duration="463">
+            <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: 400
+    at Object.toBe (C:\Mes dossiers\DC1 GIT\Classe\Projets_Transversaux\O2A-backend\Final\AllergyFrontend\backend_bonneversion\__tests__\comment.spec.js:96:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+        </testCase>
+        <testCase name="API Comment Post should unreport a given post" duration="8282">
+            <failure message="Error: read ECONNRESET"><![CDATA[Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:217:20)]]></failure>
+        </testCase>
+        <testCase name="API Comment Post should delete a specific  given comment" duration="1007">
+            <failure message="Error: connect ECONNREFUSED 127.0.0.1:5000"><![CDATA[Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1157:16)]]></failure>
+        </testCase>
+    </file>
+</testExecutions>

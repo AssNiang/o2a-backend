@@ -1,0 +1,6 @@
+projectKey=o2a-backend
+serverUrl=http://localhost:9000
+serverVersion=9.6.1.59531
+dashboardUrl=http://localhost:9000/dashboard?id=o2a-backend
+ceTaskId=AYNIe-K6-9pwEuNLCIn7
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYNIe-K6-9pwEuNLCIn7
