@@ -34,13 +34,13 @@ jobs:
       run: npm ci
       
       
-    - name: Dependency Review To Check For Vulnerabilities
-      uses: actions/dependency-review-action@v2.1.0
-      with:
-        # Token for the repository. Can be passed in using `{{ secrets.GITHUB_TOKEN }}`.
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        # Don't block PRs below this severity. Possible values are `low`, `moderate`, `high`, `critical`.
-        fail-on-severity: low
+#     - name: Dependency Review To Check For Vulnerabilities
+#       uses: actions/dependency-review-action@v2.1.0
+#       with:
+#         # Token for the repository. Can be passed in using `{{ secrets.GITHUB_TOKEN }}`.
+#         repo-token: ${{ secrets.GITHUB_TOKEN }}
+#         # Don't block PRs below this severity. Possible values are `low`, `moderate`, `high`, `critical`.
+#         fail-on-severity: low
         
 
     - name: Run Tests
