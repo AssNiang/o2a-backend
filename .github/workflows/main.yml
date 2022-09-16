@@ -43,12 +43,12 @@ jobs:
 #         fail-on-severity: low
         
 
-    - name: Run Tests
-      run: npm run test
+#     - name: Run Tests
+#       run: npm run test
       
       
     - name: Build Application
-      run: npm run build-cicd
+      run: npm run build
 
 
     - name: Upload artifact for deployment job
