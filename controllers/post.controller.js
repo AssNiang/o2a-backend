@@ -119,25 +119,31 @@ module.exports.createPrivatePost = async (req, res) => {
   }
 };
 
+
+
 module.exports.updatePost = (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
-  PostModel.findByIdAndUpdate(
-    req.params.id,
-    {
-      $set: {
-        posterId: req.body.posterId,
-        message: req.body.message,
-        statut: req.body.statut,
+  if (!ObjectID.isValid(req.params.id)) return res.status(400).send('ID unknown : ' + req.params.id);
+  try {
+    PostModel.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          posterId: req.body.posterId,
+          message: req.body.message,
+          statut: req.body.statut,
+        },
       },
-    },
-    { new: true, upsert: true, setDefaultsOnInsert: true },
-    (err, docs) => {
-      if (!err) return res.status(200).send(docs);
-      else return res.status(400).send("Update Error : "+err);
-    }
-  );
+      { new: true, upsert: true, setDefaultsOnInsert: true },
+      (err, docs) => {
+        if (!err) return res.status(200).send(docs);
+        else return res.status(400).send('Update Error : ' + err);
+      }
+    );
+  } catch (err) {
+    return res.status(500).send('message:' + err);
+  }
 };
+
 
 module.exports.deletePost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))

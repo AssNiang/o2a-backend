@@ -36,27 +36,29 @@ module.exports.signUp =  (req, res) => {
             res.status(200).send(err);
         }
 } ;
-module.exports.signIn= async (req, res ) => {
-    const {email, password} = req.body;
-    
-    try {
-        const user = UserModel.findOne({ email:email });
-        if (user) {
-            const auth = await bcrypt.compare(password, user.password);
-            if (auth) {
-                const token = createToken(user._id);
-                res.cookie('jwt', token, {httpOnly: true, maxAge});
-                return res.status(200).send("id:" + user._id); 
-            }
-            throw Error('incorrect password');
 
+module.exports.signIn = async (req, res) => {
+    const { email, password } = req.body;
+  
+    try {
+      const user = UserModel.findOne({ email: email }, async (err, docs) => {
+        if (!err) {
+          const auth = await bcrypt.compare(password, docs.password);
+          if (auth) {
+            const token = createToken(docs._id);
+            res.cookie('jwt', token, { httpOnly: true, maxAge });
+            return res.status(200).send({id : docs._id});
+          } 
+        } else {
+          throw Error('incorrect password');
+          throw Error('incorrect email');
         }
-        throw Error('incorrect email')
-    } catch(err){
-        const errors = signInErrors(err);
-        res.status(200).send(errors);
-    } 
-} 
+      });
+    } catch (err){
+      const errors = signInErrors(err);
+      res.status(400).send(errors);
+    }
+  };
 
 module.exports.logout = (req, res) => {
     res.cookie('jwt', '', {maxAge:1});
