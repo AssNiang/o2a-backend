@@ -136,7 +136,7 @@ module.exports.updatePost = (req, res) => {
       { new: true, upsert: true, setDefaultsOnInsert: true },
       (err, docs) => {
         if (!err) return res.status(200).send(docs);
-        else return res.status(400).send('Update Error : ' + err);
+        else return res.status(400).send({message: 'Update Error : ' + err});
       }
     );
   } catch (err) {
@@ -147,10 +147,10 @@ module.exports.updatePost = (req, res) => {
 
 module.exports.deletePost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
+    return res.status(400).send({message:"ID unknown : " + req.params.id});
 
   PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
-    if (!err) return res.status(200).send("Post supprime !");
+    if (!err) return res.status(200).send({message:"Post supprime !"});
     else return res.status(400).send(err);
   });
 };
