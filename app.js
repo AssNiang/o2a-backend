@@ -44,6 +44,7 @@ app.use('/api/user/admin', adminRoutes);
 
 //***************************************************************/
 const multer = require('multer');
+const PostModel = require('./models/post.model');
 
 const storage_profile = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -89,8 +90,29 @@ const storage_post_image = multer.diskStorage({
 
 const upload_post_image = multer({ storage: storage_post_image });
 
-app.post('/api/post/file', upload_post_image.single('file'), (req, res) => {
+app.post('/api/post/file/:idPost', upload_post_image.single('file'), (req, res) => {
   const file = req.file;
+  //console.log(file)
+  try {
+    PostModel.findByIdAndUpdate(
+      req.params.idPost,
+      {
+        $set: {
+          picture: req.file.filename,
+        },
+      },
+      { new: true, upsert: true, setDefaultsOnInsert: true },
+      (err, docs) => {
+        if (!err) {
+          return res.status(200).send(docs);
+        } else {
+          return res.status(400).send({ message: 'Update Error : ' + err });
+        }
+      }
+    );
+  } catch (err) {
+    return res.status(500).send('message:' + err);
+  }
 
   if (file) {
     res.json(file);
@@ -107,6 +129,16 @@ app.post('/api/post/multifiles', upload_post_image.array('files'), (req, res) =>
     res.json(files);
   } else {
     throw new Error('Files upload unsuccessful');
+  }
+});
+
+app.get('/api/post/file/:filePath', (req, res) => {
+  const filePath = __dirname + '/uploads/posts/' + req.params.filePath;
+
+  if (filePath) {
+    res.sendFile(filePath);
+  } else {
+    throw new Error('Failed to upload the file');
   }
 });
 
