@@ -45,6 +45,7 @@ app.use('/api/user/admin', adminRoutes);
 //***************************************************************/
 const multer = require('multer');
 const PostModel = require('./models/post.model');
+const ObjectID = require('mongoose').Types.ObjectId;
 
 const storage_profile = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -74,7 +75,7 @@ app.get('/api/user/file/:filePath', (req, res) => {
   if (filePath) {
     res.sendFile(filePath);
   } else {
-    throw new Error('Failed to upload the file');
+    throw new Error('Failed to get the file');
   }
 });
 
@@ -93,6 +94,7 @@ const upload_post_image = multer({ storage: storage_post_image });
 app.post('/api/post/file/:idPost', upload_post_image.single('file'), (req, res) => {
   const file = req.file;
   //console.log(file)
+  if (!ObjectID.isValid(req.params.idPost)) return res.status(400).send('ID unknown : ' + req.params.idPost);
   try {
     PostModel.findByIdAndUpdate(
       req.params.idPost,
@@ -104,7 +106,7 @@ app.post('/api/post/file/:idPost', upload_post_image.single('file'), (req, res) 
       { new: true, upsert: true, setDefaultsOnInsert: true },
       (err, docs) => {
         if (!err) {
-          return res.status(200).send(docs);
+          return res.status(200);
         } else {
           return res.status(400).send({ message: 'Update Error : ' + err });
         }
@@ -138,7 +140,7 @@ app.get('/api/post/file/:filePath', (req, res) => {
   if (filePath) {
     res.sendFile(filePath);
   } else {
-    throw new Error('Failed to upload the file');
+    throw new Error('Failed to get the file');
   }
 });
 
