@@ -1,26 +1,25 @@
-const PostModel = require("../models/post.model");
-const FicheModel = require("../models/fiche.model");
-const UserModel = require("../models/user.model");
-const { uploadErrors } = require("../utils/errors.utils");
-const ObjectID = require("mongoose").Types.ObjectId;
-const fs = require("fs");
-const { promisify } = require("util");
-const pipeline = promisify(require("stream").pipeline);
+const PostModel = require('../models/post.model');
+const FicheModel = require('../models/fiche.model');
+const UserModel = require('../models/user.model');
+const { uploadErrors } = require('../utils/errors.utils');
+const ObjectID = require('mongoose').Types.ObjectId;
+const fs = require('fs');
+const { promisify } = require('util');
+const pipeline = promisify(require('stream').pipeline);
 
 module.exports.readPost = (req, res) => {
   PostModel.find((err, docs) => {
     if (!err) res.status(200).send(docs);
-    else console.log("Error to get data : " + err);
+    else console.log('Error to get data : ' + err);
   }).sort({ createdAt: -1 });
 };
 //all user's posts
-module.exports.getUserPosts =(req, res) => {
-  if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
+module.exports.getUserPosts = (req, res) => {
+  if (!ObjectID.isValid(req.params.id)) return res.status(400).send('ID unknown : ' + req.params.id);
 
-  PostModel.find({posterId:req.params.id}, (err, docs) => {
+  PostModel.find({ posterId: req.params.id }, (err, docs) => {
     if (!err) res.status(200).send(docs);
-    else console.log("Error to get data : " + err);
+    else console.log('Error to get data : ' + err);
   }).sort({ createdAt: -1 });
 };
 
@@ -58,11 +57,11 @@ module.exports.createPublicPost = async (req, res) => {
     video: req.body.video,
     audio: req.body.audio,
     likers: [],
-    reporters:[],
+    reporters: [],
   });
 
   try {
-     newPost.save()
+    newPost.save();
     return res.status(201).send(newPost);
   } catch (err) {
     return res.status(400).send(err);
@@ -99,27 +98,25 @@ module.exports.createPrivatePost = async (req, res) => {
   const newPost = new PostModel({
     posterId: req.body.posterId,
     message: req.body.message,
-    statut: "private",
+    statut: 'private',
     // picture: req.file !== null ? "./uploads/posts/" + fileName : "",
     video: req.body.video,
     audio: req.body.audio,
     likers: [],
-    reporters:[],
+    reporters: [],
   });
   try {
-    newPost.save()
+    newPost.save();
     const newFiche = new FicheModel({
-      postId:newPost._id,
-      patientId:req.body.posterId
+      postId: newPost._id,
+      patientId: req.body.posterId,
     });
-    newFiche.save()
-    return res.status(201).json({post: newPost});
+    newFiche.save();
+    return res.status(201).json(newPost);
   } catch (err) {
     return res.status(400).send(err);
   }
 };
-
-
 
 module.exports.updatePost = (req, res) => {
   if (!ObjectID.isValid(req.params.id)) return res.status(400).send('ID unknown : ' + req.params.id);
@@ -136,7 +133,7 @@ module.exports.updatePost = (req, res) => {
       { new: true, upsert: true, setDefaultsOnInsert: true },
       (err, docs) => {
         if (!err) return res.status(200).send(docs);
-        else return res.status(400).send({message: 'Update Error : ' + err});
+        else return res.status(400).send({ message: 'Update Error : ' + err });
       }
     );
   } catch (err) {
@@ -144,20 +141,27 @@ module.exports.updatePost = (req, res) => {
   }
 };
 
-
 module.exports.deletePost = (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send({message:"ID unknown : " + req.params.id});
+  if (!ObjectID.isValid(req.params.id)) return res.status(400).send({ message: 'ID unknown : ' + req.params.id });
+
+  const fs = require('fs');
+  const { promisify } = require('util');
+  const unlinkAsync = promisify(fs.unlink);
 
   PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
-    if (!err) return res.status(200).send({message:"Post supprime !"});
+    // delete from the diskStorage
+    if(docs.picture){
+      unlinkAsync(__dirname + '/../uploads/posts/' + docs.picture);
+    }
+    
+
+    if (!err) return res.status(200).send({ message: 'Post supprime !' });
     else return res.status(400).send(err);
   });
 };
 
 module.exports.likePost = (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
+  if (!ObjectID.isValid(req.params.id)) return res.status(400).send('ID unknown : ' + req.params.id);
 
   try {
     PostModel.findByIdAndUpdate(
@@ -170,7 +174,7 @@ module.exports.likePost = (req, res) => {
         if (err) return res.status(400).send(err);
       }
     );
-     UserModel.findByIdAndUpdate(
+    UserModel.findByIdAndUpdate(
       req.body.id,
       {
         $addToSet: { postLikes: req.params.id },
@@ -186,12 +190,11 @@ module.exports.likePost = (req, res) => {
   }
 };
 
-module.exports.unlikePost =  (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
+module.exports.unlikePost = (req, res) => {
+  if (!ObjectID.isValid(req.params.id)) return res.status(400).send('ID unknown : ' + req.params.id);
 
   try {
-     PostModel.findByIdAndUpdate(
+    PostModel.findByIdAndUpdate(
       req.params.id,
       {
         $pull: { likers: req.body.id },
@@ -201,7 +204,7 @@ module.exports.unlikePost =  (req, res) => {
         if (err) return res.status(400).send(err);
       }
     );
-     UserModel.findByIdAndUpdate(
+    UserModel.findByIdAndUpdate(
       req.body.id,
       {
         $pull: { postLikes: req.params.id },
@@ -217,12 +220,11 @@ module.exports.unlikePost =  (req, res) => {
   }
 };
 
-module.exports.reportPost =  (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
+module.exports.reportPost = (req, res) => {
+  if (!ObjectID.isValid(req.params.id)) return res.status(400).send('ID unknown : ' + req.params.id);
 
   try {
-     PostModel.findByIdAndUpdate(
+    PostModel.findByIdAndUpdate(
       req.params.id,
       {
         $addToSet: { reporters: req.body.id },
@@ -232,7 +234,7 @@ module.exports.reportPost =  (req, res) => {
         if (err) return res.status(400).send(err);
       }
     );
-     UserModel.findByIdAndUpdate(
+    UserModel.findByIdAndUpdate(
       req.body.id,
       {
         $addToSet: { postReports: req.params.id },
@@ -248,12 +250,11 @@ module.exports.reportPost =  (req, res) => {
   }
 };
 
-module.exports.unReportPost =  (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
+module.exports.unReportPost = (req, res) => {
+  if (!ObjectID.isValid(req.params.id)) return res.status(400).send('ID unknown : ' + req.params.id);
 
   try {
-     PostModel.findByIdAndUpdate(
+    PostModel.findByIdAndUpdate(
       req.params.id,
       {
         $pull: { reporters: req.body.id },
@@ -263,7 +264,7 @@ module.exports.unReportPost =  (req, res) => {
         if (err) return res.status(400).send(err);
       }
     );
-     UserModel.findByIdAndUpdate(
+    UserModel.findByIdAndUpdate(
       req.body.id,
       {
         $pull: { postReports: req.params.id },
@@ -278,5 +279,3 @@ module.exports.unReportPost =  (req, res) => {
     return res.status(400).send(err);
   }
 };
-
-
