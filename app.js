@@ -73,7 +73,7 @@ app.post('/api/user/file/:idUser', upload_profile.single('file'), (req, res) => 
       // delete from the diskStorage
       if (docs.picture.localeCompare('blank-profile-picture.webp') != 0) {
         unlinkAsync(__dirname + '/uploads/profiles/' + docs.picture);
-        console.log(docs.picture);
+        //console.log(docs.picture);
       }
     });
   } catch (error) {
