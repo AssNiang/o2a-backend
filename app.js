@@ -138,38 +138,86 @@ app.post('/api/post/file/:idPost', upload_post_image.single('file'), (req, res) 
   const { promisify } = require('util');
   const unlinkAsync = promisify(fs.unlink);
 
-  try {
-    PostModel.findById(req.params.idPost, (err, docs) => {
-      // delete from the diskStorage
-      if (docs.picture) {
-        unlinkAsync(__dirname + '/uploads/posts/' + docs.picture);
-      }
-    });
-  } catch (error) {
-    return res.status(500).send('message:' + err);
-  }
+  const allowedImageMimeTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+  const allowedVideoMimeTypes = ['video/mp4'];
+  const allowedAudioMimeTypes = ['audio/mpeg', 'audio/wav', 'audio/wave'];
 
   if (file) {
     res.json(file);
 
     if (!ObjectID.isValid(req.params.idPost)) return res.status(400).send('ID unknown : ' + req.params.idPost);
     try {
-      PostModel.findByIdAndUpdate(
-        req.params.idPost,
-        {
-          $set: {
-            picture: req.file.filename,
-          },
-        },
-        { new: true, upsert: true, setDefaultsOnInsert: true },
-        (err, docs) => {
-          if (!err) {
-            return res.status(200);
-          } else {
-            return res.status(400).send({ message: 'Update Error : ' + err });
-          }
+      PostModel.findById(req.params.idPost, (err, docs) => {
+        // delete from the diskStorage
+        // console.log(docs);
+        // console.log(file.mimetype);
+        if (docs.picture) {
+          unlinkAsync(__dirname + '/uploads/posts/' + docs.picture);
+        } else if (docs.video) {
+          unlinkAsync(__dirname + '/uploads/posts/' + docs.video);
+        } else if (docs.audio) {
+          unlinkAsync(__dirname + '/uploads/posts/' + docs.audio);
         }
-      );
+      });
+
+      if (allowedImageMimeTypes.includes(file.mimetype)) {
+        PostModel.findByIdAndUpdate(
+          req.params.idPost,
+          {
+            $set: {
+              picture: req.file.filename,
+              video: '',
+              audio: '',
+            },
+          },
+          { new: true, upsert: true, setDefaultsOnInsert: true },
+          (err, docs) => {
+            if (!err) {
+              return res.status(200);
+            } else {
+              return res.status(400).send({ message: 'Update Error : ' + err });
+            }
+          }
+        );
+      } else if (allowedVideoMimeTypes.includes(file.mimetype)) {
+        PostModel.findByIdAndUpdate(
+          req.params.idPost,
+          {
+            $set: {
+              video: req.file.filename,
+              picture: '',
+              audio: '',
+            },
+          },
+          { new: true, upsert: true, setDefaultsOnInsert: true },
+          (err, docs) => {
+            if (!err) {
+              return res.status(200);
+            } else {
+              return res.status(400).send({ message: 'Update Error : ' + err });
+            }
+          }
+        );
+      } else if (allowedAudioMimeTypes.includes(file.mimetype)) {
+        PostModel.findByIdAndUpdate(
+          req.params.idPost,
+          {
+            $set: {
+              audio: req.file.filename,
+              picture: '',
+              video: '',
+            },
+          },
+          { new: true, upsert: true, setDefaultsOnInsert: true },
+          (err, docs) => {
+            if (!err) {
+              return res.status(200);
+            } else {
+              return res.status(400).send({ message: 'Update Error : ' + err });
+            }
+          }
+        );
+      }
     } catch (err) {
       return res.status(500).send('message:' + err);
     }
@@ -182,6 +230,8 @@ app.post('/api/post/file/:idPost', upload_post_image.single('file'), (req, res) 
         {
           $set: {
             picture: '',
+            video: '',
+            audio: '',
           },
         },
         { new: true, upsert: true, setDefaultsOnInsert: true },

@@ -150,8 +150,14 @@ module.exports.deletePost = (req, res) => {
 
   PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
     // delete from the diskStorage
-    if(docs.picture){
+    if (docs.picture) {
       unlinkAsync(__dirname + '/../uploads/posts/' + docs.picture);
+    } 
+    if (docs.video) {
+      unlinkAsync(__dirname + '/../uploads/posts/' + docs.video);
+    } 
+    if (docs.audio) {
+      unlinkAsync(__dirname + '/../uploads/posts/' + docs.audio);
     }
     
 
