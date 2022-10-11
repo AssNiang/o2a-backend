@@ -13,6 +13,13 @@ module.exports.readPost = (req, res) => {
     else console.log('Error to get data : ' + err);
   }).sort({ createdAt: -1 });
 };
+
+module.exports.getPostById = (req, res) => {
+  PostModel.findById(req.params.id, (err, doc) => {
+    if (!err) res.status(200).send(doc);
+    else console.log('Error to get data : ' + err);
+  });
+};
 //all user's posts
 module.exports.getUserPosts = (req, res) => {
   if (!ObjectID.isValid(req.params.id)) return res.status(400).send('ID unknown : ' + req.params.id);
@@ -150,10 +157,15 @@ module.exports.deletePost = (req, res) => {
 
   PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
     // delete from the diskStorage
-    if(docs.picture){
+    if (docs.picture) {
       unlinkAsync(__dirname + '/../uploads/posts/' + docs.picture);
     }
-    
+    if (docs.video) {
+      unlinkAsync(__dirname + '/../uploads/posts/' + docs.video);
+    }
+    if (docs.audio) {
+      unlinkAsync(__dirname + '/../uploads/posts/' + docs.audio);
+    }
 
     if (!err) return res.status(200).send({ message: 'Post supprime !' });
     else return res.status(400).send(err);

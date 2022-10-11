@@ -4,6 +4,7 @@ const multer = require("multer");
 const upload = multer();
 
 router.get('/', postController.readPost);
+router.get('/:id', postController.getPostById);
 router.get('/historique-posts/:id', postController.getUserPosts);
 router.post('/public-post', upload.single("file"), postController.createPublicPost);
 router.post('/private-post', upload.single("file"), postController.createPrivatePost);
