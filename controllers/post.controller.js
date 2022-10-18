@@ -1,10 +1,12 @@
 const PostModel = require('../models/post.model');
+const CommentModel = require('../models/comment.model');
 const FicheModel = require('../models/fiche.model');
 const UserModel = require('../models/user.model');
 const { uploadErrors } = require('../utils/errors.utils');
 const ObjectID = require('mongoose').Types.ObjectId;
 const fs = require('fs');
 const { promisify } = require('util');
+const commentModel = require('../models/comment.model');
 const pipeline = promisify(require('stream').pipeline);
 
 module.exports.readPost = (req, res) => {
@@ -148,12 +150,21 @@ module.exports.updatePost = (req, res) => {
   }
 };
 
-module.exports.deletePost = (req, res) => {
+module.exports.deletePost = async (req, res) => {
   if (!ObjectID.isValid(req.params.id)) return res.status(400).send({ message: 'ID unknown : ' + req.params.id });
 
   const fs = require('fs');
   const { promisify } = require('util');
   const unlinkAsync = promisify(fs.unlink);
+
+  // CommentModel.find({ postId: req.params.id }, (err, docs) => {
+  //   if(docs.length){
+  //     CommentModel.find({ postId: req.params.id }).deleteMany();
+  //   }
+  // });
+  
+  //await CommentModel.deleteMany({ postId: req.params.id });
+  commentModel.find({ postId: req.params.id }).deleteMany().exec();
 
   PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
     // delete from the diskStorage

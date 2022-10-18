@@ -105,7 +105,7 @@ app.post('/api/user/file/:idUser', upload_profile.single('file'), (req, res) => 
       return res.status(500).send('message:' + err);
     }
   } else {
-    console.log('No file was added !');
+    //console.log('No file was added !');
     throw new NoFileSelectedError('An image must be selected !');
   }
 });
@@ -222,7 +222,7 @@ app.post('/api/post/file/:idPost', upload_post_image.single('file'), (req, res) 
       return res.status(500).send('message:' + err);
     }
   } else {
-    console.log('No file was added !');
+    //console.log('No file was added !');
 
     try {
       PostModel.findByIdAndUpdate(

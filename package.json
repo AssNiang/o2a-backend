@@ -57,7 +57,7 @@
     "mongoose": "^6.5.2",
     "mongoose-unique-validator": "^3.1.0",
     "multer": "^2.0.0-rc.1",
-    "nodemon": "^2.0.20",
+    "nodemon": "^2.0.19",
     "validator": "^13.7.0"
   },
   "devDependencies": {
