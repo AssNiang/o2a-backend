@@ -150,7 +150,7 @@ module.exports.updatePost = (req, res) => {
   }
 };
 
-module.exports.deletePost = async (req, res) => {
+module.exports.deletePost = (req, res) => {
   if (!ObjectID.isValid(req.params.id)) return res.status(400).send({ message: 'ID unknown : ' + req.params.id });
 
   const fs = require('fs');
@@ -164,7 +164,7 @@ module.exports.deletePost = async (req, res) => {
   // });
   
   //await CommentModel.deleteMany({ postId: req.params.id });
-  commentModel.find({ postId: req.params.id }).deleteMany().exec();
+  
 
   PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
     // delete from the diskStorage
@@ -177,6 +177,8 @@ module.exports.deletePost = async (req, res) => {
     if (docs.audio) {
       unlinkAsync(__dirname + '/../uploads/posts/' + docs.audio);
     }
+
+    commentModel.find({ postId: req.params.id }).deleteMany().exec();
 
     if (!err) return res.status(200).send({ message: 'Post supprime !' });
     else return res.status(400).send(err);
