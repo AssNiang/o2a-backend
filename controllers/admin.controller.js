@@ -5,7 +5,7 @@ const PostModel = require('../models/post.model');
 const SpecialistModel = require('../models/specialist.model');
 
 module.exports.createSpecialist = async (req, res) => {
-  const { userId, professionnal_address, job, workplace } = req.body;
+  const { userId, job, workplace, professionnal_address } = req.body;
   const matricule = 'O2A_specialist' + Date.now() + 'o2a';
   if (!ObjectID.isValid(userId)) {
     return res.status(400).send("L'utilisateur d'id " + userId + " n'existe pas: ");
@@ -41,25 +41,20 @@ module.exports.createSpecialist = async (req, res) => {
   }
 };
 
-// gets a 'specialist' in the body.
 module.exports.retireSpecialist = async (req, res) => {
-  try {
-    SpecialistModel.findByIdAndDelete(req.body._id);
-    UserModel.findByIdAndUpdate(
-      req.body.userId,
-      {
-        $set: {
-          is_specialist: false,
-        },
+  SpecialistModel.deleteOne({ userId: req.params.userId });
+  UserModel.findByIdAndUpdate(
+    { _id: req.params.userId },
+    {
+      $set: {
+        is_specialist: false,
       },
-      { new: true, upsert: true, setDefaultsOnInsert: true },
-      (err, docs) => {
-        if (err) return res.status(500).send({ message: err });
-      }
-    );
-  } catch (err) {
-    res.status(400).send({ err });
-  }
+    },
+    (err, docs) => {
+      if (!err) return res.status(200).send(docs);
+      else return res.status(400).send(err);
+    }
+  );
 };
 
 module.exports.getReportedPosts = (req, res) => {
@@ -113,27 +108,27 @@ module.exports.getUnFollowedPatients = async (req, res) => {
 };
 
 module.exports.blockAccount = async (req, res) => {
-  UserModel.findByIdAndUpdate(
-    req.params.id,
+  UserModel.findOneAndUpdate(
+    { _id: req.body.userId },
     {
       $set: { is_locked: true },
     },
-    { new: true },
     (err, docs) => {
-      if (err) return res.status(400).send(err);
+      if (!err) return res.status(200).send(docs);
+      else return res.status(400).send(err);
     }
   );
 };
 
 module.exports.unblockAccount = async (req, res) => {
-  UserModel.findByIdAndUpdate(
-    req.params.id,
+  UserModel.findOneAndUpdate(
+    { _id: req.body.userId },
     {
       $set: { is_locked: false },
     },
-    { new: true },
     (err, docs) => {
-      if (err) return res.status(400).send(err);
+      if (!err) return res.status(200).send(docs);
+      else return res.status(400).send(err);
     }
   );
 };

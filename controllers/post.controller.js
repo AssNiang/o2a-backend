@@ -162,11 +162,10 @@ module.exports.deletePost = (req, res) => {
   //     CommentModel.find({ postId: req.params.id }).deleteMany();
   //   }
   // });
-  
-  //await CommentModel.deleteMany({ postId: req.params.id });
-  
 
-  PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
+  //await CommentModel.deleteMany({ postId: req.params.id });
+
+  PostModel.findByIdAndRemove({ _id: req.params.id }, (err, docs) => {
     // delete from the diskStorage
     if (docs.picture) {
       unlinkAsync(__dirname + '/../uploads/posts/' + docs.picture);
