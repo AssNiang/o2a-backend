@@ -42,7 +42,7 @@ module.exports.createSpecialist = async (req, res) => {
 };
 
 module.exports.retireSpecialist = async (req, res) => {
-  SpecialistModel.deleteOne({ userId: req.params.userId });
+  SpecialistModel.find({ userId: req.params.userId }).deleteOne().exec();
   UserModel.findByIdAndUpdate(
     { _id: req.params.userId },
     {
