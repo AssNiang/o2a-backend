@@ -1,17 +1,17 @@
- const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const PostSchema = new mongoose.Schema(
   {
     posterId: {
       type: String,
-      required: true
+      required: true,
     },
     statut: {
-        type: String,
-        required: true,
-        enum: ['public', 'private'],
-        default: 'public',
-   },
+      type: String,
+      required: true,
+      enum: ['public', 'private'],
+      default: 'public',
+    },
     message: {
       type: String,
       trim: true,
@@ -19,21 +19,21 @@ const PostSchema = new mongoose.Schema(
     },
     picture: {
       type: String,
-    },
+    },  
     video: {
       type: String,
     },
     audio: {
-        type: String,
-      },
+      type: String,
+    },
     likers: {
       type: [String],
       required: true,
     },
     reporters: {
-        type: [String],
-        required: true,
-      },
+      type: [String],
+      required: true,
+    },
   },
   {
     timestamps: true,
