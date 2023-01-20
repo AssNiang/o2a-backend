@@ -1,0 +1,13 @@
+node_modules
+build
+npm-debug.log
+__tests__
+.scannerwork
+.github
+client
+coverage
+helpers
+docker-compose.sonar.yml
+test-report.yml
+sonar-project.properties
+jest.config.js

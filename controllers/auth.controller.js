@@ -26,33 +26,37 @@ module.exports.signUp = (req, res) => {
         user
           .save()
           .then(() => res.status(201).send({ user: user }))
-          .catch((error) => res.status(400).send(error));
+          .catch((error) => {
+            res.status(400).send({error: error});
+            //console.log(error.message);
+          });
       })
       .catch((err) => {
         const errors = signUpErrors(err);
-        res.status(400).send(errors);
+        res.status(400).send({error: errors});
       });
   } catch (err) {
-    res.status(400).send(err);
+    res.status(400).send({error: err});
   }
 };
 
 module.exports.signIn = async (req, res) => {
-  const { email, password } = req.body;
+  const { user_name, password } = req.body;
 
   try {
-    const user = UserModel.findOne({ email: email }, async (err, docs) => {
+    const user = UserModel.findOne({ user_name: user_name }, async (err, docs) => {
       if (docs) {
         const auth = await bcrypt.compare(password, docs.password);
         if (auth) {
           const token = createToken(docs._id);
+          console.log(token)
           res.cookie('jwt', token, { httpOnly: true, maxAge });
           return res.status(200).send({ id: docs._id });
         } else {
           return res.send({ error: 'Mot de passe incorrect' });
         }
       } else {
-        return res.send({ error: 'Adresse email incorrecte' });
+        return res.send({ error: "Nom d'utilisateur incorrect" });
       }
     });
   } catch (err) {
