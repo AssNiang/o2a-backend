@@ -61,17 +61,17 @@ const userSchema = new mongoose.Schema(
       default: 'blank-profile-picture.webp',
     },
 
-    // date_of_birth: {
-    //   type: Date,
-    //   minLength: 3,
-    //   maxLength: 55,
-    //   trim: true,
-    // },
+    date_of_birth: {
+      type: Date,
+      minLength: 3,
+      maxLength: 55,
+      trim: true,
+    },
 
-    // sexe: {
-    //   type: String,
-    //   enum: ['Homme', 'Femme'],
-    // },
+    sexe: {
+      type: String,
+      enum: ['Homme', 'Femme'],
+    },
 
     is_patient: {
       type: Boolean,

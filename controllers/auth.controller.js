@@ -18,25 +18,25 @@ module.exports.signUp = (req, res) => {
         const user = new UserModel({
           last_name: req.body.last_name,
           first_name: req.body.first_name,
+          user_name: req.body.user_name,
           address: req.body.address,
           email: req.body.email,
-          user_name: req.body.user_name,
           password: hash,
         });
         user
           .save()
           .then(() => res.status(201).send({ user: user }))
           .catch((error) => {
-            res.status(400).send({error: error});
+            res.status(400).send({ error: error });
             //console.log(error.message);
           });
       })
       .catch((err) => {
         const errors = signUpErrors(err);
-        res.status(400).send({error: errors});
+        res.status(400).send({ error: errors });
       });
   } catch (err) {
-    res.status(400).send({error: err});
+    res.status(400).send({ error: err });
   }
 };
 
@@ -49,9 +49,12 @@ module.exports.signIn = async (req, res) => {
         const auth = await bcrypt.compare(password, docs.password);
         if (auth) {
           const token = createToken(docs._id);
-          console.log(token)
+          // console.log(token);
           res.cookie('jwt', token, { httpOnly: true, maxAge });
-          return res.status(200).send({ id: docs._id });
+          return res.status(200).send({
+            id: docs._id,
+            token: token,
+          });
         } else {
           return res.send({ error: 'Mot de passe incorrect' });
         }
