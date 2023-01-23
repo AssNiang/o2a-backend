@@ -49,9 +49,9 @@ module.exports.signIn = async (req, res) => {
         const auth = await bcrypt.compare(password, docs.password);
         if (auth) {
           const token = createToken(docs._id);
-          console.log(token)
+          //console.log(token)
           res.cookie('jwt', token, { httpOnly: true, maxAge });
-          return res.status(200).send({ id: docs._id });
+          return res.status(200).send({ id: docs._id, token: token });
         } else {
           return res.send({ error: 'Mot de passe incorrect' });
         }

@@ -4,6 +4,7 @@ const postRoutes = require('./routes/post.routes');
 const commentRoutes = require('./routes/comment.routes');
 const specialistRoutes = require('./routes/specialist.routes');
 const adminRoutes = require('./routes/admin.routes');
+const health_structRoutes = require('./routes/health_struct.routes');
 const cookieParser = require('cookie-parser');
 const databaseHelper = require('./config/database');
 const cors = require('cors');
@@ -41,6 +42,7 @@ app.use('/api/post', postRoutes);
 app.use('/api/comment', commentRoutes);
 app.use('/api/user/specialist', specialistRoutes);
 app.use('/api/user/admin', adminRoutes);
+app.use('/api/location', health_structRoutes);
 
 //***************************************************************/
 const multer = require('multer');
