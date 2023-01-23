@@ -27,6 +27,15 @@ const corsOptions = {
   preflightContinue: false,
 };
 app.use(cors(corsOptions));
+
+// firebaseConfiguration
+// const imageRoute = require('./routes/image.route');
+// import our current configuration
+// const config = require('./config');
+
+// routes (for uploading images to storage)
+// app.use('/api', imageRoute.routes);
+
 //database
 databaseHelper.connect();
 
@@ -44,11 +53,13 @@ app.use('/api/user/specialist', specialistRoutes);
 app.use('/api/user/admin', adminRoutes);
 app.use('/api/location', health_structRoutes);
 
+//***************************************************************** */
 //***************************************************************/
 const multer = require('multer');
 const PostModel = require('./models/post.model');
 const UserModel = require('./models/user.model');
 const ObjectID = require('mongoose').Types.ObjectId;
+const fileService = require('./services/file.service');
 
 const storage_profile = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -83,6 +94,7 @@ app.post('/api/user/file/:idUser', upload_profile.single('file'), (req, res) => 
   }
 
   if (file) {
+    fileService.uploadFileToFirebase(file);
     res.json(file);
 
     if (!ObjectID.isValid(req.params.idUser)) return res.status(400).send('ID unknown : ' + req.params.idUser);
@@ -145,6 +157,7 @@ app.post('/api/post/file/:idPost', upload_post_image.single('file'), (req, res) 
   const allowedAudioMimeTypes = ['audio/mpeg', 'audio/wav', 'audio/wave'];
 
   if (file) {
+    fileService.uploadFileToFirebase(file);
     res.json(file);
 
     if (!ObjectID.isValid(req.params.idPost)) return res.status(400).send('ID unknown : ' + req.params.idPost);
