@@ -5,6 +5,7 @@ const commentRoutes = require('./routes/comment.routes');
 const specialistRoutes = require('./routes/specialist.routes');
 const adminRoutes = require('./routes/admin.routes');
 const health_structRoutes = require('./routes/health_struct.routes');
+const mailRoutes = require('./routes/mail.routes');
 const cookieParser = require('cookie-parser');
 const databaseHelper = require('./config/database');
 const cors = require('cors');
@@ -52,6 +53,7 @@ app.use('/api/comment', commentRoutes);
 app.use('/api/user/specialist', specialistRoutes);
 app.use('/api/user/admin', adminRoutes);
 app.use('/api/location', health_structRoutes);
+app.use('/api/mail', mailRoutes);
 
 //***************************************************************** */
 //***************************************************************/
@@ -152,7 +154,7 @@ app.post('/api/post/file/:idPost', upload_post_image.single('file'), (req, res) 
   const { promisify } = require('util');
   const unlinkAsync = promisify(fs.unlink);
 
-  const allowedImageMimeTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+  const allowedImageMimeTypes = ['image/png', 'image/jpeg', 'image/jpg','image/jfif',];
   const allowedVideoMimeTypes = ['video/mp4'];
   const allowedAudioMimeTypes = ['audio/mpeg', 'audio/wav', 'audio/wave'];
 

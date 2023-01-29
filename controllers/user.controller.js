@@ -37,7 +37,7 @@ module.exports.updateUser = async (req, res) => {
           user_name: (req.body.user_name = req.body.user_name ? req.body.user_name : user.user_name),
           address: (req.body.address = req.body.address ? req.body.address : user.address),
           password: (req.body.password = req.body.password ? await hashPassword(req.body.password) : user.password),
-          date_of_birth: (req.body.date_of_birth = req.body.date_of_birth ? req.body.date : user.date_of_birth),
+          email: (req.body.email = req.body.email ? req.body.email : user.email),
         },
       },
       { new: true, upsert: true, setDefaultsOnInsert: true },
