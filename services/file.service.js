@@ -6,6 +6,7 @@ const initializeApp = require('firebase/app');
 const getStorage = require('firebase/storage');
 const ref = require('firebase/storage');
 const uploadString = require('firebase/storage');
+const getDownloadURL = require('firebase/storage');
 // import { getStorage, ref, uploadBytes } from 'firebase/storage';
 // Create a root reference
 const firebaseConfig = {
@@ -19,43 +20,35 @@ const firebaseConfig = {
 };
 const app = initializeApp.initializeApp(firebaseConfig);
 const storage = getStorage.getStorage(app);
-// const imagesRef = ref(storage, 'profiles');
-// 'file' comes from the Blob or File API
-// uploadBytes(storageRef, file).then((snapshot) => {
-//   console.log('Uploaded a blob or file!');
-// });
-// Initialize Cloud Storage and get a reference to the service
-// const storage = getStorage(app);
-// firebase.initializeApp(firebaseConfig);
-// const storage = getStorage.getStorage(app);
 
 exports.uploadFileToFirebase = async (file) => {
-  //   console.log(file);
-  // Format the filename
-  // const timestamp = Date.now();
-  // const name = file.originalname.split('.')[0];
-  // const type = file.originalname.split('.')[1];
-  // const fileName = `${name}_${timestamp}.${type}`;
-  // Step 1. Create reference for file name in cloud storage
-  // Create file metadata including the content type
-  //   /** @type {any} */
-  //   const metadata = {
-  //     contentType: 'image/jpg',
-  //   };
   const storageRef = ref.ref(storage, file.filename);
   // Raw string is the default if no format is provided
   const message = 'This is my message.';
   uploadString.uploadString(storageRef, message).then((snapshot) => {
     console.log('Uploaded a blob or file!');
   });
-  //   storage.imageRef.filename = file.filename;
-  // Step 2. Upload the file in the bucket storage
-  //   storage.imageRef.buffer = file.buffer;
-  // Step 3. Grab the public url
-  //   const downloadURL = snapshot.ref.getDownloadURL();
-  //   return downloadURL;
 };
 
-// Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
+exports.getUrlFromFirebaseStirage = async (file) => {
+  getDownloadURL(ref(storage, file.filename))
+    .then((url) => {
+      // `url` is the download URL for 'images/stars.jpg'
+
+      // This can be downloaded directly:
+      const xhr = new XMLHttpRequest();
+      xhr.responseType = 'blob';
+      xhr.onload = (event) => {
+        const blob = xhr.response;
+      };
+      xhr.open('GET', url);
+      xhr.send();
+
+      // // Or inserted into an <img> element
+      // const img = document.getElementById('myimg');
+      // img.setAttribute('src', url);
+    })
+    .catch((error) => {
+      // Handle any errors
+    });
+};
